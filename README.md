@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Job Application Portal
 
 This project is a **multi-tenant job application management system** built using:
@@ -90,3 +91,6 @@ Inject Abp.TenantId from logged-in user’s tenant in Angular HTTP headers
 
 Use PrimeNG dialogs and table for UI interactivity
 
+=======
+# JobApplicationPortal
+>>>>>>> c08a2bc2cc197679e4c187fa054b2b5147758b9e
