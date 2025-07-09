@@ -1,96 +1,109 @@
-<<<<<<< HEAD
-# Job Application Portal
+# 💼 Job Application Portal (ABP + Angular)
 
-This project is a **multi-tenant job application management system** built using:
+A **multi-tenant job application management system** built using:
 
 - ✅ ASP.NET Core 9 (ABP Boilerplate Architecture)
-- ✅ Angular (auto-generated frontend)
+- ✅ Angular (Auto-generated frontend)
 - ✅ Entity Framework Core + SQL Server
-- ✅ Swagger API documentation
+- ✅ Swagger for API testing
+- ✅ Hangfire-ready for background jobs
 
 ---
 
-## 🔧 Project Status
+## 📌 Project Status
 
-This solution includes:
+- ✅ **Backend Features Implemented:**
+  - `JobPosition` CRUD (with tenant-based isolation)
+  - `Candidate` creation with file upload (PDF, DOCX, JPG/PNG)
+  - Role-based permission scaffold (HR, Recruiter, etc.)
+  - Tenant custom setting: `App.Job.MaxApplicantsPerPosition`
+  - Swagger integrated and documented
 
-- ✅ Complete backend setup with working:
-  - JobPosition CRUD endpoints
-  - Candidate creation (with file upload logic)
-  - Swagger integration for testing
-  - Custom Tenant Setting support
-  - Role and permission support scaffolded
-- 🟨 Frontend (Angular) UI is **not customized yet**
+- 🟨 **Frontend (Angular):**
+  - Not customized yet
+  - Default ABP UI works but does not handle multi-tenancy headers like `Abp.TenantId`
 
-Due to this being my **first experience with Angular and ABP’s UI structure**, I was unable to make modifications confidently in the frontend. However:
-
-- All backend features are complete
-- APIs are documented and testable via Swagger (with token)
+> ℹ️ This was my **first experience using Angular with ABP**, so frontend changes were not applied. However, backend is ready and testable.
 
 ---
 
 ## ⚙️ Backend Setup Instructions
 
-1. **Clone the Repo & Navigate**
-   ```bash
-   git clone <your_repo_url>
-   cd aspnet-core
-Configure SQL Connection
-Edit src/JobApplicationPortal.Web.Host/appsettings.json
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/JobApplicationPortal.git
+cd JobApplicationPortal/aspnet-core
+2. Configure Database Connection
+Open src/JobApplicationPortal.Web.Host/appsettings.json:
 
 json
 Copy
 Edit
 "ConnectionStrings": {
-  "Default": "Server=localhost; Database=JobApplicationPortalDb; Trusted_Connection=True;"
+  "Default": "Server=localhost; Database=JobApplicationPortalDb; Trusted_Connection=True; TrustServerCertificate=True;"
 }
-Restore Dependencies
-
+3. Restore Dependencies
 bash
 Copy
 Edit
 dotnet restore
-Apply Migrations
-
+4. Apply Migrations
 bash
 Copy
 Edit
-dotnet ef database update --project src/JobApplicationPortal.EntityFrameworkCore --startup-project src/JobApplicationPortal.Web.Host
-Run the Backend
-
+dotnet ef database update \
+  --project src/JobApplicationPortal.EntityFrameworkCore \
+  --startup-project src/JobApplicationPortal.Web.Host
+5. Run the Application
 bash
 Copy
 Edit
 cd src/JobApplicationPortal.Web.Host
 dotnet run
-Access Swagger
-https://localhost:44311/swagger
+📚 API Testing (via Swagger)
+Once backend is running, open:
+
+📎 https://localhost:44311/swagger
 
 🔐 Default Admin Login
-vbnet
+txt
 Copy
 Edit
 Tenant: Default
 Username: admin
 Password: 123qwe
-🚫 Known Limitations
-Swagger cannot test some endpoints due to TenantId being null — since it's normally sent from the Angular UI as a header (Abp.TenantId).
+⚠️ Note: Some endpoints (like JobPosition and Candidate create) may return TenantId is null in Swagger. This is because ABP expects the Abp.TenantId header, which the Angular UI usually provides.
 
-This affects testing endpoints like:
+🔧 Known Limitations
+❌ Swagger cannot simulate multi-tenancy properly (missing Abp.TenantId)
 
-JobPosition Create
+❌ Angular frontend not integrated with custom backend logic yet
 
-Candidate Create
+🚀 What's Next (Future Work)
+🛠️ Add Angular UI integration
 
-✅ Once the Angular UI is implemented or updated to send the correct Abp.TenantId header, the backend will behave as expected.
+PrimeNG modal dialogs for Create/Edit JobPositions
 
-🔜 What’s Next (Future Work)
-Customize the Angular UI to consume the backend
+Dashboard card for Top 5 Job Positions
 
-Inject Abp.TenantId from logged-in user’s tenant in Angular HTTP headers
+Table with search, filter, pagination
 
-Use PrimeNG dialogs and table for UI interactivity
+📥 Resume download/view per candidate
 
-=======
-# JobApplicationPortal
->>>>>>> c08a2bc2cc197679e4c187fa054b2b5147758b9e
+🧠 Enable Hangfire job to notify inactive job postings
+
+🎯 Set Abp.TenantId in Angular HTTP headers during API calls
+
+📂 Folder Structure
+text
+Copy
+Edit
+JobApplicationPortal/
+├── aspnet-core/          # Backend (.NET 9 ABP)
+│   ├── src/
+│   └── appsettings.json
+├── angular/              # Frontend (Angular - default scaffold)
+├── README.md             # Project documentation
+📄 License
+This project uses the MIT License.
