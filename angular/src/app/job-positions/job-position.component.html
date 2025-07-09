@@ -1,0 +1,29 @@
+<p-table [value]="jobPositions" [paginator]="true" [rows]="10" [globalFilterFields]="['title']">
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      <input pInputText type="text" (input)="table.filterGlobal($event.target.value, 'contains')" placeholder="Search by title...">
+      <button pButton type="button" icon="pi pi-plus" label="Add Job" (click)="openCreateDialog()"></button>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-job>
+    <tr>
+      <td>{{ job.title }}</td>
+      <td>{{ job.description }}</td>
+      <td>{{ job.isActive ? 'Active' : 'Inactive' }}</td>
+      <td>
+        <button pButton icon="pi pi-pencil" (click)="edit(job)"></button>
+        <button pButton icon="pi pi-trash" class="p-button-danger" (click)="delete(job.id)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
