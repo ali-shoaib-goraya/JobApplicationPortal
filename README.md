@@ -41,15 +41,13 @@ Open src/JobApplicationPortal.Web.Host/appsettings.json:
 }
 
 ### 3. Restore Dependencies
-bash
-Copy
-Edit
+
 dotnet restore
-4. Apply Migrations
+### 4. Apply Migrations
 dotnet ef database update \
   --project src/JobApplicationPortal.EntityFrameworkCore \
   --startup-project src/JobApplicationPortal.Web.Host
-5. Run the Application
+### 5. Run the Application
 cd src/JobApplicationPortal.Web.Host
 dotnet run
 
@@ -86,13 +84,6 @@ Table with search, filter, pagination
 
 🎯 Set Abp.TenantId in Angular HTTP headers during API calls
 
-## 📂 Folder Structure
-JobApplicationPortal/
-├── aspnet-core/          # Backend (.NET 9 ABP)
-│   ├── src/
-│   └── appsettings.json
-├── angular/              # Frontend (Angular - default scaffold)
-├── README.md             # Project documentation
 
 ## 📄 License
 This project uses the MIT License.
